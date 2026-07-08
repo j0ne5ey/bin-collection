@@ -153,3 +153,36 @@ html, body {
 .stale-warning {
   color: #d98c2b !important;
 }
+
+.ptr-indicator {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) - 50px);
+  left: 50%;
+  margin-left: -18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  z-index: 50;
+  pointer-events: none;
+  transform: translateY(0);
+}
+
+.ptr-spinner {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent, #1f6feb);
+  box-sizing: border-box;
+}
+
+.ptr-indicator.refreshing .ptr-spinner {
+  animation: ptr-spin 0.8s linear infinite;
+}
+
+@keyframes ptr-spin {
+  to { transform: rotate(360deg); }
+}

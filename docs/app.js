@@ -113,3 +113,91 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(() => {});
   });
 }
+
+// --- Pull to refresh ---
+// Installed/standalone PWAs don't reliably get the browser's native
+// pull-to-refresh, so this reimplements the gesture by hand.
+(function setupPullToRefresh() {
+  const indicator = document.getElementById("ptr-indicator");
+  const spinner = indicator.querySelector(".ptr-spinner");
+  const THRESHOLD = 70;
+  const MAX_PULL = 110;
+  const MIN_SPINNER_MS = 400;
+
+  let startY = 0;
+  let distance = 0;
+  let pulling = false;
+  let refreshing = false;
+
+  function setPull(px) {
+    distance = Math.max(0, Math.min(px, MAX_PULL));
+    indicator.style.transform = `translateY(${distance}px)`;
+    indicator.style.opacity = String(Math.min(distance / THRESHOLD, 1));
+    spinner.style.transform = `rotate(${Math.min(distance / THRESHOLD, 1) * 360}deg)`;
+  }
+
+  function resetPull() {
+    indicator.style.transition = "transform 0.25s ease, opacity 0.25s ease";
+    setPull(0);
+    setTimeout(() => {
+      indicator.style.transition = "";
+    }, 250);
+  }
+
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      if (refreshing || window.scrollY > 0) return;
+      startY = e.touches[0].clientY;
+      pulling = true;
+    },
+    { passive: true }
+  );
+
+  document.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!pulling || refreshing) return;
+      const diff = e.touches[0].clientY - startY;
+      if (diff <= 0 || window.scrollY > 0) {
+        pulling = false;
+        setPull(0);
+        return;
+      }
+      e.preventDefault();
+      setPull(diff * 0.5);
+    },
+    { passive: false }
+  );
+
+  document.addEventListener("touchend", async () => {
+    if (!pulling || refreshing) {
+      pulling = false;
+      return;
+    }
+    pulling = false;
+
+    if (distance < THRESHOLD) {
+      resetPull();
+      return;
+    }
+
+    refreshing = true;
+    indicator.style.transition = "transform 0.2s ease";
+    indicator.style.transform = `translateY(${THRESHOLD}px)`;
+    indicator.style.opacity = "1";
+    spinner.style.transform = "";
+    indicator.classList.add("refreshing");
+
+    const started = Date.now();
+    await load();
+    const elapsed = Date.now() - started;
+    if (elapsed < MIN_SPINNER_MS) {
+      await new Promise((r) => setTimeout(r, MIN_SPINNER_MS - elapsed));
+    }
+
+    indicator.classList.remove("refreshing");
+    refreshing = false;
+    resetPull();
+  });
+})();
