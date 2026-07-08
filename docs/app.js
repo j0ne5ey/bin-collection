@@ -148,7 +148,7 @@ async function withMinDuration(fn, minMs) {
 // pull-to-refresh, so this reimplements the gesture by hand.
 (function setupPullToRefresh() {
   const indicator = document.getElementById("ptr-indicator");
-  const spinner = indicator.querySelector(".ptr-spinner");
+  const arrow = indicator.querySelector(".ptr-arrow");
   const THRESHOLD = 70;
   const MAX_PULL = 110;
 
@@ -159,9 +159,12 @@ async function withMinDuration(fn, minMs) {
 
   function setPull(px) {
     distance = Math.max(0, Math.min(px, MAX_PULL));
+    const progress = Math.min(distance / THRESHOLD, 1);
     indicator.style.transform = `translateY(${distance}px)`;
-    indicator.style.opacity = String(Math.min(distance / THRESHOLD, 1));
-    spinner.style.transform = `rotate(${Math.min(distance / THRESHOLD, 1) * 360}deg)`;
+    indicator.style.opacity = String(progress);
+    // Arrow points down while pulling, flips to point up once past the
+    // threshold (i.e. "release to refresh").
+    arrow.style.transform = `rotate(${progress * 180}deg)`;
   }
 
   function resetPull() {
@@ -214,7 +217,7 @@ async function withMinDuration(fn, minMs) {
     indicator.style.transition = "transform 0.2s ease";
     indicator.style.transform = `translateY(${THRESHOLD}px)`;
     indicator.style.opacity = "1";
-    spinner.style.transform = "";
+    arrow.style.transform = "";
     indicator.classList.add("refreshing");
 
     await withMinDuration(load, MIN_SPINNER_MS);

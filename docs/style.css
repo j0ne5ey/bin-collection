@@ -200,6 +200,10 @@ html, body {
   margin-left: -18px;
   width: 36px;
   height: 36px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,18 +211,14 @@ html, body {
   z-index: 50;
   pointer-events: none;
   transform: translateY(0);
+  color: var(--accent, #1f6feb);
 }
 
-.ptr-spinner {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 3px solid var(--border);
-  border-top-color: var(--accent, #1f6feb);
-  box-sizing: border-box;
+.ptr-arrow {
+  transition: transform 0.15s ease;
 }
 
-.ptr-indicator.refreshing .ptr-spinner {
+.ptr-indicator.refreshing .ptr-arrow {
   animation: ptr-spin 0.8s linear infinite;
 }
 
