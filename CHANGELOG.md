@@ -30,3 +30,8 @@ refreshes, not changes to the project itself.
   content it had. Restructured to a fixed-height app shell — header, next-
   collection card, and footer are always visible; only the Upcoming list
   scrolls internally if it has more entries than fit.
+
+### Changed
+- The pull-to-refresh indicator now shows a down/up arrow that flips as the
+  pull crosses the release threshold, then spins during the actual refresh,
+  in place of the plain spinner ring it used before.
