@@ -19,4 +19,5 @@ collection — updates itself automatically every day.
 3. Run the "Update bin collection data" workflow once manually (Actions tab)
    to generate the first `collections.json`.
 
-See [PLAN.md](PLAN.md) for the full design.
+See [PLAN.md](PLAN.md) for the full design and [CHANGELOG.md](CHANGELOG.md) for
+what's changed since.
