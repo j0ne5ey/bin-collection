@@ -114,6 +114,35 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+const MIN_SPINNER_MS = 400;
+
+// Runs `fn` but ensures at least `minMs` passes first, so a loading spinner
+// never flashes too briefly to register.
+async function withMinDuration(fn, minMs) {
+  const started = Date.now();
+  const result = await fn();
+  const elapsed = Date.now() - started;
+  if (elapsed < minMs) {
+    await new Promise((r) => setTimeout(r, minMs - elapsed));
+  }
+  return result;
+}
+
+// --- Refresh button ---
+(function setupRefreshButton() {
+  const btn = document.getElementById("refresh-btn");
+  if (!btn) return;
+
+  btn.addEventListener("click", async () => {
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.classList.add("spinning");
+    await withMinDuration(load, MIN_SPINNER_MS);
+    btn.classList.remove("spinning");
+    btn.disabled = false;
+  });
+})();
+
 // --- Pull to refresh ---
 // Installed/standalone PWAs don't reliably get the browser's native
 // pull-to-refresh, so this reimplements the gesture by hand.
@@ -122,7 +151,6 @@ if ("serviceWorker" in navigator) {
   const spinner = indicator.querySelector(".ptr-spinner");
   const THRESHOLD = 70;
   const MAX_PULL = 110;
-  const MIN_SPINNER_MS = 400;
 
   let startY = 0;
   let distance = 0;
@@ -189,12 +217,7 @@ if ("serviceWorker" in navigator) {
     spinner.style.transform = "";
     indicator.classList.add("refreshing");
 
-    const started = Date.now();
-    await load();
-    const elapsed = Date.now() - started;
-    if (elapsed < MIN_SPINNER_MS) {
-      await new Promise((r) => setTimeout(r, MIN_SPINNER_MS - elapsed));
-    }
+    await withMinDuration(load, MIN_SPINNER_MS);
 
     indicator.classList.remove("refreshing");
     refreshing = false;

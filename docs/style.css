@@ -150,6 +150,35 @@ html, body {
   color: var(--text-dim);
 }
 
+.refresh-btn {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.refresh-btn:active {
+  transform: scale(0.97);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.refresh-btn.spinning .refresh-icon {
+  animation: ptr-spin 0.8s linear infinite;
+}
+
 .stale-warning {
   color: #d98c2b !important;
 }

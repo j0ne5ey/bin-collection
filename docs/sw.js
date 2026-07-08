@@ -1,4 +1,4 @@
-const CACHE = "bin-collection-v2";
+const CACHE = "bin-collection-v3";
 const SHELL = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
