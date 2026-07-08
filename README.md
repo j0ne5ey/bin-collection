@@ -12,7 +12,7 @@ collection — updates itself automatically every day.
 ## Setup
 
 1. In the repo's Settings → Secrets and variables → Actions, add:
-   - `SBC_POSTCODE` — e.g. `EH45 9HF`
+   - `SBC_POSTCODE` — e.g. `TD1 2QN`
    - `SBC_UPRN` — the property's UPRN (find at
      [findmyaddress.co.uk](https://www.findmyaddress.co.uk))
 2. Settings → Pages → deploy from the `main` branch, `/docs` folder.
