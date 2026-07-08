@@ -1,0 +1,45 @@
+name: Keepalive
+
+# GitHub disables scheduled workflows after 60 days with no repo activity.
+# The daily scraper commit normally keeps this repo active on its own, but if
+# the Bartec portal breaks and scraping fails for weeks, that safety net
+# disappears too. This workflow is the backstop: it checks monthly whether
+# the last commit is getting old, and if so pushes a trivial commit purely to
+# keep the schedule alive until the real scraper is fixed.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Commit if repo is going stale
+        run: |
+          last_commit_epoch=$(git log -1 --format=%ct)
+          now_epoch=$(date +%s)
+          days_since=$(( (now_epoch - last_commit_epoch) / 86400 ))
+          echo "Days since last commit: $days_since"
+
+          if [ "$days_since" -lt 45 ]; then
+            echo "Repo is active, nothing to do."
+            exit 0
+          fi
+
+          echo "No commits in $days_since days — the scraper may be failing. Pushing a keepalive commit."
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          mkdir -p .github
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .github/.keepalive
+          git add .github/.keepalive
+          git commit -m "Keepalive: no scraper activity in $days_since days, check the Update workflow"
+          git push

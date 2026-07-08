@@ -105,8 +105,11 @@ bin-collection/
 - Scrape failure → workflow exits non-zero (visible email from GitHub), previous JSON
   stays in place. Collections are fortnightly, so stale data stays correct for days.
 - **60-day rule**: GitHub disables scheduled workflows in repos with no activity for
-  60 days. The daily data commit itself normally prevents this; as a belt-and-braces,
-  add a keepalive step (e.g. `gautamkrishnar/keepalive-workflow`).
+  60 days. The daily data commit itself normally prevents this, but only while
+  scraping keeps succeeding. `.github/workflows/keepalive.yml` is the backstop: it
+  runs monthly and, if the last commit is 45+ days old (i.e. the scraper has been
+  silently failing), pushes a trivial commit so the schedule itself never lapses —
+  giving time to notice and fix the real failure via GitHub's run-failure emails.
 - If Bartec ever blocks GitHub's IP ranges or changes markup: fallback is Playwright
   headless in the same workflow (heavier but robust). Not needed initially.
 
