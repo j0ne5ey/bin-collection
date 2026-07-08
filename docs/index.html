@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Bin Collection</title>
+<meta name="theme-color" content="#0f1115" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<main class="app">
+  <header class="app-header">
+    <h1>Bin Collection</h1>
+  </header>
+
+  <section id="next-card" class="next-card">
+    <p class="loading">Loading…</p>
+  </section>
+
+  <section class="upcoming">
+    <h2>Upcoming</h2>
+    <ul id="upcoming-list" class="upcoming-list"></ul>
+  </section>
+
+  <footer class="app-footer">
+    <p id="updated-text"></p>
+    <p id="stale-warning" class="stale-warning" hidden>
+      ⚠ Data hasn't updated in a while — showing the last known schedule.
+    </p>
+  </footer>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

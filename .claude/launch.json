@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docs-server",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "8123", "/Users/mikejones/Desktop/claude-projects/bin-collection/docs"],
+      "port": 8123
+    }
+  ]
+}

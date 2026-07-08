@@ -1,0 +1,119 @@
+{
+  "updated": "2026-07-08T19:44:38Z",
+  "colours": {
+    "General Waste": "#4a4a4a",
+    "Recycling": "#1b6ea5",
+    "Food": "#2f8f4e",
+    "Garden": "#7a5230"
+  },
+  "collections": [
+    {
+      "date": "2026-07-10",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-07-13",
+      "type": "Food"
+    },
+    {
+      "date": "2026-07-14",
+      "type": "Recycling"
+    },
+    {
+      "date": "2026-07-20",
+      "type": "Food"
+    },
+    {
+      "date": "2026-07-24",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-07-27",
+      "type": "Food"
+    },
+    {
+      "date": "2026-07-28",
+      "type": "Recycling"
+    },
+    {
+      "date": "2026-08-03",
+      "type": "Food"
+    },
+    {
+      "date": "2026-08-07",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "Food"
+    },
+    {
+      "date": "2026-08-11",
+      "type": "Recycling"
+    },
+    {
+      "date": "2026-08-17",
+      "type": "Food"
+    },
+    {
+      "date": "2026-08-21",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-08-24",
+      "type": "Food"
+    },
+    {
+      "date": "2026-08-25",
+      "type": "Recycling"
+    },
+    {
+      "date": "2026-08-31",
+      "type": "Food"
+    },
+    {
+      "date": "2026-09-04",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-09-07",
+      "type": "Food"
+    },
+    {
+      "date": "2026-09-08",
+      "type": "Recycling"
+    },
+    {
+      "date": "2026-09-14",
+      "type": "Food"
+    },
+    {
+      "date": "2026-09-18",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-09-21",
+      "type": "Food"
+    },
+    {
+      "date": "2026-09-22",
+      "type": "Recycling"
+    },
+    {
+      "date": "2026-09-28",
+      "type": "Food"
+    },
+    {
+      "date": "2026-10-02",
+      "type": "General Waste"
+    },
+    {
+      "date": "2026-10-05",
+      "type": "Food"
+    },
+    {
+      "date": "2026-10-06",
+      "type": "Recycling"
+    }
+  ]
+}
