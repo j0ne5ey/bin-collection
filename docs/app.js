@@ -74,7 +74,7 @@ function render(data) {
 
   const nextCard = document.getElementById("next-card");
   const thenSection = document.getElementById("then-section");
-  const thenList = document.getElementById("then-list");
+  const thenCard = document.getElementById("then-card");
   const upcomingList = document.getElementById("upcoming-list");
 
   const groups = groupByDate(upcoming);
@@ -101,9 +101,22 @@ function render(data) {
 
   const thenGroup = groups[1];
   thenSection.hidden = !thenGroup;
-  thenList.innerHTML = thenGroup
-    ? thenGroup.items.map((c) => collectionRowHTML(c, data.colours)).join("")
-    : "";
+  if (thenGroup) {
+    const thenPrimary = thenGroup.items[0];
+    const thenAccent = (data.colours && data.colours[thenPrimary.type]) || "#1f6feb";
+    const thenOthers = thenGroup.items.slice(1).map((c) => c.type).join(" + ");
+
+    thenCard.style.setProperty("--accent", thenAccent);
+    thenCard.innerHTML = `
+      <div>
+        <p class="then-type">${thenPrimary.type}${thenOthers ? " + " + thenOthers : ""}</p>
+        <p class="then-date">${formatShortDate(thenGroup.date)}</p>
+      </div>
+      <span class="then-countdown">${countdownLabel(thenGroup.date)}</span>
+    `;
+  } else {
+    thenCard.innerHTML = "";
+  }
 
   const rest = groups.slice(2).flatMap((g) => g.items).slice(0, 8);
   upcomingList.innerHTML = rest

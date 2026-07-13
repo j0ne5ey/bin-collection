@@ -111,27 +111,54 @@ html, body {
   flex-shrink: 0;
 }
 
-.then-list,
+.then-card {
+  border-radius: 16px;
+  padding: 1.1rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--accent, #1f6feb);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.then-card .then-type {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.15rem;
+}
+
+.then-card .then-date {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.then-card .then-countdown {
+  flex-shrink: 0;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent, #1f6feb);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
 .upcoming-list {
   list-style: none;
   margin: 0;
   padding: 0;
   border-radius: 16px;
   border: 1px solid var(--border);
-}
-
-.upcoming-list {
   flex: 1;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.then-list {
-  overflow: hidden;
-}
-
-.then-list li,
 .upcoming-list li {
   display: flex;
   align-items: center;
@@ -141,12 +168,10 @@ html, body {
   border-bottom: 1px solid var(--border);
 }
 
-.then-list li:last-child,
 .upcoming-list li:last-child {
   border-bottom: none;
 }
 
-.then-list .dot,
 .upcoming-list .dot {
   width: 10px;
   height: 10px;
@@ -154,13 +179,11 @@ html, body {
   flex-shrink: 0;
 }
 
-.then-list .u-type,
 .upcoming-list .u-type {
   font-weight: 600;
   flex: 1;
 }
 
-.then-list .u-date,
 .upcoming-list .u-date {
   color: var(--text-dim);
   font-size: 0.9rem;
