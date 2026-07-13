@@ -40,6 +40,32 @@ function countdownLabel(iso) {
   return "Overdue";
 }
 
+// Collapses a sorted flat list of {date, type} entries into date groups,
+// so same-day collections (e.g. General Waste + Recycling) stay together.
+function groupByDate(items) {
+  const groups = [];
+  for (const item of items) {
+    const last = groups[groups.length - 1];
+    if (last && last.date === item.date) {
+      last.items.push(item);
+    } else {
+      groups.push({ date: item.date, items: [item] });
+    }
+  }
+  return groups;
+}
+
+function collectionRowHTML(item, colours) {
+  const dotColour = (colours && colours[item.type]) || "#888";
+  return `
+    <li>
+      <span class="dot" style="background:${dotColour}"></span>
+      <span class="u-type">${item.type}</span>
+      <span class="u-date">${formatShortDate(item.date)}</span>
+    </li>
+  `;
+}
+
 function render(data) {
   const todayISO = todayLocalISO();
   const upcoming = data.collections
@@ -47,40 +73,41 @@ function render(data) {
     .sort((a, b) => a.date.localeCompare(b.date));
 
   const nextCard = document.getElementById("next-card");
+  const thenSection = document.getElementById("then-section");
+  const thenList = document.getElementById("then-list");
   const upcomingList = document.getElementById("upcoming-list");
 
-  if (upcoming.length === 0) {
+  const groups = groupByDate(upcoming);
+
+  if (groups.length === 0) {
     nextCard.innerHTML = `<p class="error">No upcoming collections found.</p>`;
+    thenSection.hidden = true;
     upcomingList.innerHTML = "";
     return;
   }
 
-  const nextDate = upcoming[0].date;
-  const sameDay = upcoming.filter((c) => c.date === nextDate);
-  const primary = sameDay[0];
+  const nextGroup = groups[0];
+  const primary = nextGroup.items[0];
   const accent = (data.colours && data.colours[primary.type]) || "#1f6feb";
 
   nextCard.style.setProperty("--accent", accent);
 
-  const others = sameDay.slice(1).map((c) => c.type).join(" + ");
+  const others = nextGroup.items.slice(1).map((c) => c.type).join(" + ");
   nextCard.innerHTML = `
     <p class="bin-type">${primary.type}${others ? " + " + others : ""}</p>
-    <p class="bin-date">${formatDayDate(nextDate)}</p>
-    <span class="countdown">${countdownLabel(nextDate)}</span>
+    <p class="bin-date">${formatDayDate(nextGroup.date)}</p>
+    <span class="countdown">${countdownLabel(nextGroup.date)}</span>
   `;
 
-  const rest = upcoming.slice(sameDay.length, sameDay.length + 8);
+  const thenGroup = groups[1];
+  thenSection.hidden = !thenGroup;
+  thenList.innerHTML = thenGroup
+    ? thenGroup.items.map((c) => collectionRowHTML(c, data.colours)).join("")
+    : "";
+
+  const rest = groups.slice(2).flatMap((g) => g.items).slice(0, 8);
   upcomingList.innerHTML = rest
-    .map((c) => {
-      const dotColour = (data.colours && data.colours[c.type]) || "#888";
-      return `
-        <li>
-          <span class="dot" style="background:${dotColour}"></span>
-          <span class="u-type">${c.type}</span>
-          <span class="u-date">${formatShortDate(c.date)}</span>
-        </li>
-      `;
-    })
+    .map((c) => collectionRowHTML(c, data.colours))
     .join("");
 
   const updatedDate = new Date(data.updated);

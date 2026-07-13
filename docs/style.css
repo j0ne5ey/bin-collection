@@ -88,14 +88,20 @@ html, body {
   font-size: 0.9rem;
 }
 
+.then-section {
+  margin-top: 1rem;
+  flex-shrink: 0;
+}
+
 .upcoming {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
+.then-section h2,
 .upcoming h2 {
   font-size: 0.95rem;
   text-transform: uppercase;
@@ -105,18 +111,27 @@ html, body {
   flex-shrink: 0;
 }
 
+.then-list,
 .upcoming-list {
   list-style: none;
   margin: 0;
   padding: 0;
   border-radius: 16px;
   border: 1px solid var(--border);
+}
+
+.upcoming-list {
   flex: 1;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
+.then-list {
+  overflow: hidden;
+}
+
+.then-list li,
 .upcoming-list li {
   display: flex;
   align-items: center;
@@ -126,10 +141,12 @@ html, body {
   border-bottom: 1px solid var(--border);
 }
 
+.then-list li:last-child,
 .upcoming-list li:last-child {
   border-bottom: none;
 }
 
+.then-list .dot,
 .upcoming-list .dot {
   width: 10px;
   height: 10px;
@@ -137,11 +154,13 @@ html, body {
   flex-shrink: 0;
 }
 
+.then-list .u-type,
 .upcoming-list .u-type {
   font-weight: 600;
   flex: 1;
 }
 
+.then-list .u-date,
 .upcoming-list .u-date {
   color: var(--text-dim);
   font-size: 0.9rem;
