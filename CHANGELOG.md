@@ -12,6 +12,12 @@ refreshes, not changes to the project itself.
   showing the collection after the imminent one so both are visible at a
   glance instead of just the next one.
 
+### Changed
+- The Then section is now its own mini-card (accent border, larger bold
+  type text, a countdown pill) instead of a plain list row, so it reads as
+  clearly more important than the Upcoming list while staying visually
+  secondary to the primary next-collection card.
+
 ## 2026-07-08
 
 ### Added
