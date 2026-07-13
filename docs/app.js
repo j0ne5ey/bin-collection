@@ -7,6 +7,13 @@ function todayLocalISO() {
   return new Date(d - tz).toISOString().slice(0, 10);
 }
 
+// Bin lorries run in the morning, so once it's past midday a collection
+// dated today is treated as already done — the app moves on to showing
+// the next one instead of lingering on today's.
+function isPastMidday() {
+  return new Date().getHours() >= 12;
+}
+
 function parseLocalDate(iso) {
   const [y, m, d] = iso.split("-").map(Number);
   return new Date(y, m - 1, d);
@@ -68,8 +75,9 @@ function collectionRowHTML(item, colours) {
 
 function render(data) {
   const todayISO = todayLocalISO();
+  const hideToday = isPastMidday();
   const upcoming = data.collections
-    .filter((c) => c.date >= todayISO)
+    .filter((c) => (hideToday ? c.date > todayISO : c.date >= todayISO))
     .sort((a, b) => a.date.localeCompare(b.date));
 
   const nextCard = document.getElementById("next-card");
