@@ -17,9 +17,10 @@ refreshes, not changes to the project itself.
   type text, a countdown pill) instead of a plain list row, so it reads as
   clearly more important than the Upcoming list while staying visually
   secondary to the primary next-collection card.
-- Added a subtle backdrop: an original wheelie-bin glyph tiled very
-  faintly across the whole app, visible in the gaps between cards. Uses
-  original artwork rather than any third-party logo.
+- Added a subtle backdrop: the app's logo mark (a continuous arc +
+  arrowhead representing the weekly collection cycle, from a provided
+  design handoff), rendered giant and near-invisible, bleeding off the
+  top-right corner behind all content.
 
 ## 2026-07-08
 
