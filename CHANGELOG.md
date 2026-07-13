@@ -17,10 +17,6 @@ refreshes, not changes to the project itself.
   type text, a countdown pill) instead of a plain list row, so it reads as
   clearly more important than the Upcoming list while staying visually
   secondary to the primary next-collection card.
-- Added the Scottish Borders Council wordmark as a faint fixed watermark
-  behind the header (inverted for dark mode), with a touch more header
-  spacing added so it displays fully rather than being cropped by the
-  next-collection card.
 
 ## 2026-07-08
 
