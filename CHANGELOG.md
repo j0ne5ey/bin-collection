@@ -5,6 +5,13 @@ the scraper workflow (`Update bin collection schedule`) and any backstop
 commits from `keepalive.yml` aren't listed here — those are routine data
 refreshes, not changes to the project itself.
 
+## 2026-07-13
+
+### Added
+- A "Then" section between the next-collection card and the Upcoming list,
+  showing the collection after the imminent one so both are visible at a
+  glance instead of just the next one.
+
 ## 2026-07-08
 
 ### Added
