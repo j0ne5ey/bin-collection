@@ -12,6 +12,12 @@ refreshes, not changes to the project itself.
   showing the collection after the imminent one so both are visible at a
   glance instead of just the next one.
 
+### Fixed
+- A collection dated today stayed shown as "next" for the rest of the day
+  even after the lorry had presumably already been. Past 12:00 local
+  time, today's entry is now dropped from the schedule entirely so the
+  app moves on to the next one.
+
 ### Changed
 - The Then section is now its own mini-card (accent border, larger bold
   type text, a countdown pill) instead of a plain list row, so it reads as
