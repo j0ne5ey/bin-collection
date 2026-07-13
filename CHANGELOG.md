@@ -21,6 +21,8 @@ refreshes, not changes to the project itself.
   arrowhead representing the weekly collection cycle, from a provided
   design handoff), rendered giant and near-invisible, bleeding off the
   top-right corner behind all content.
+- Added the header logo lockup: the same arc icon at 22px next to the
+  "Bin Collection" title, set in Space Grotesk per the design handoff.
 
 ## 2026-07-08
 
