@@ -29,21 +29,34 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-.bg-pattern {
+.bg-watermark {
   position: fixed;
-  inset: 0;
+  top: -60px;
+  right: -90px;
+  width: 420px;
+  height: 420px;
   z-index: 0;
   pointer-events: none;
-  background-image: url("images/bin-pattern.svg");
-  background-repeat: repeat;
-  background-size: 100px 100px;
-  opacity: 0.07;
+  opacity: 0.05;
+}
+
+.bg-watermark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bg-watermark path {
+  stroke: #054980;
 }
 
 @media (prefers-color-scheme: dark) {
-  .bg-pattern {
-    filter: invert(1);
-    opacity: 0.1;
+  .bg-watermark {
+    opacity: 0.07;
+  }
+
+  .bg-watermark path {
+    stroke: #82b3e5;
   }
 }
 
