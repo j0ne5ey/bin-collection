@@ -23,6 +23,11 @@ refreshes, not changes to the project itself.
   top-right corner behind all content.
 - Added the header logo lockup: the same arc icon at 22px next to the
   "Bin Collection" title, set in Space Grotesk per the design handoff.
+- Replaced the home-screen app icon with the new logo mark (white arc on
+  the brand-blue tile), completing the rebrand from the old wheelie-bin
+  icon set. Devices with the app already installed won't pick this up
+  until it's removed and re-added to the home screen — that icon is
+  cached by the OS, not something a web update can refresh.
 
 ## 2026-07-08
 
