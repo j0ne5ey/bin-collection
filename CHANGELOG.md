@@ -17,6 +17,9 @@ refreshes, not changes to the project itself.
   type text, a countdown pill) instead of a plain list row, so it reads as
   clearly more important than the Upcoming list while staying visually
   secondary to the primary next-collection card.
+- Added a subtle backdrop: an original wheelie-bin glyph tiled very
+  faintly across the whole app, visible in the gaps between cards. Uses
+  original artwork rather than any third-party logo.
 
 ## 2026-07-08
 
