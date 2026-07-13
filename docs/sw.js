@@ -1,5 +1,12 @@
-const CACHE = "bin-collection-v8";
-const SHELL = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest"];
+const CACHE = "bin-collection-v9";
+const SHELL = [
+  "./",
+  "index.html",
+  "style.css",
+  "app.js",
+  "manifest.webmanifest",
+  "images/sbc-logo.svg",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)));
