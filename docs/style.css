@@ -29,30 +29,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-.bg-watermark {
-  position: fixed;
-  top: env(safe-area-inset-top, 0px);
-  left: 0;
-  right: 0;
-  height: 64px;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("images/sbc-logo.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 130px auto;
-  opacity: 0.12;
-}
-
-@media (prefers-color-scheme: dark) {
-  .bg-watermark {
-    filter: invert(1);
-  }
-}
-
 .app {
-  position: relative;
-  z-index: 1;
   max-width: 480px;
   margin: 0 auto;
   padding: env(safe-area-inset-top, 1.5rem) 1.25rem calc(env(safe-area-inset-bottom, 1.5rem) + 1.5rem);
@@ -65,7 +42,7 @@ html, body {
 .app-header h1 {
   font-size: 1.3rem;
   font-weight: 600;
-  margin: 0.5rem 0 2rem;
+  margin: 0.5rem 0 1.25rem;
 }
 
 .next-card {
