@@ -1,5 +1,12 @@
-const CACHE = "bin-collection-v10";
-const SHELL = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest"];
+const CACHE = "bin-collection-v11";
+const SHELL = [
+  "./",
+  "index.html",
+  "style.css",
+  "app.js",
+  "manifest.webmanifest",
+  "images/bin-pattern.svg",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)));
