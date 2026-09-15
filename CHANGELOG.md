@@ -5,6 +5,17 @@ the scraper workflow (`Update bin collection schedule`) and any backstop
 commits from `keepalive.yml` aren't listed here — those are routine data
 refreshes, not changes to the project itself.
 
+## 2026-09-15
+
+### Fixed
+- The iOS home-screen icon was reusing the Android "any" icon, which has
+  pre-rounded corners and a transparent background baked in — iOS applies
+  its own corner mask and can render transparent regions oddly. Added a
+  dedicated 180x180 apple-touch-icon: full-bleed opaque square, no
+  transparency, no pre-rounded corners, matching Apple's guidance.
+  Android's manifest icons (192/512 "any" + 512 "maskable") were already
+  correct and are unchanged.
+
 ## 2026-07-13
 
 ### Added
