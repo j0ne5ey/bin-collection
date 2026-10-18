@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17T09:36:41Z",
+  "updated": "2026-10-18T09:48:52Z",
   "colours": {
     "General Waste": "#4a4a4a",
     "Recycling": "#1b6ea5",
@@ -110,6 +110,10 @@
     {
       "date": "2027-01-12",
       "type": "Recycling"
+    },
+    {
+      "date": "2027-01-18",
+      "type": "Food"
     }
   ]
 }
